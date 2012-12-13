@@ -38,7 +38,7 @@ public class Article implements Serializable {
 	public void setCode_Art(int code_Art) {
 		this.code_Art = code_Art;
 	}
-	public Article(String ref_Art, String nom_art, String libellé,
+	/*public Article(String ref_Art, String nom_art, String libellé,
 			int prix_HTVA, int tVA, int quantité, int quantité_min) {
 		super();
 		this.ref_Art = ref_Art;
@@ -49,7 +49,7 @@ public class Article implements Serializable {
 		this.quantité = quantité;
 		this.quantité_min = quantité_min;
 	}
-	public String getRef_Art() {
+	*/public String getRef_Art() {
 		return ref_Art;
 	}
 	public void setRef_Art(String ref_Art) {
@@ -78,6 +78,11 @@ public class Article implements Serializable {
 	}
 	public void setTVA(int tVA) {
 		TVA = tVA;
+	}
+	public Article(String nom_art, String libellé) {
+		super();
+		this.nom_art = nom_art;
+		this.libellé = libellé;
 	}
 	public int getQuantité() {
 		return quantité;

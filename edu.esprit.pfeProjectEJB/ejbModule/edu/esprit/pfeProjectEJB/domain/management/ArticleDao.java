@@ -19,7 +19,7 @@ import javax.persistence.Query;
 @LocalBean
 public class ArticleDao implements ArticleDaoRemote, ArticleDaoLocal {
 
-	@PersistenceContext
+	@PersistenceContext(unitName="edu.esprit.pfeProjectEJB")
 	EntityManager em ;
     public ArticleDao() {
         // TODO Auto-generated constructor stub
