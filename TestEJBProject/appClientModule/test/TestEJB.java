@@ -4,39 +4,26 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import edu.esprit.pfeProjectEJB.domain.management.interfaces.ArticleDaoRemote;
-import edu.esprit.pfeProjectEJB.persistence.Article;
+
+import edu.esprit.pfeProjectEJB.domain.management.interfaces.GestionPersonneRemote;
+import edu.esprit.pfeProjectEJB.persistence.Personne;
 
 public class TestEJB {
 	public TestEJB ()  {
 		
 	}
 
-	public static void main(String[] args) {
-	
-		   ArticleDaoRemote gest = null ;
-			try {
-				Context ctx = new InitialContext() ;
-				Object o =(ArticleDaoRemote) ctx.lookup("ejb:/edu.esprit.pfeProjectEJB/ArticleDao!edu.esprit.pfeProjectEJB.domain.management.interfaces.ArticleDaoRemote") ;
-			     gest = (ArticleDaoRemote) o ;
-		
-			} catch (NamingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		createArticle(gest) ; 
-		  
-	}
+	public static void main(String[] args) throws NamingException {
+		System.out.println("*************************");
 
-	
+		Context jndiContext = new InitialContext();
+		Object ref = jndiContext.lookup("ejb:edu.esprit.pfeProject/edu.esprit.pfeProjectEJB/GestionPersonne!edu.esprit.pfeProjectEJB.domain.management.interfaces.GestionPersonneRemote");
 		
-	   public static void createArticle(ArticleDaoRemote gest ) {
-		   
-           Article article = new Article("aaaaaa", "bbbbbb") ;
-		   gest.createArticle(article) ;
-	   }
-	
-	   
-	
-	
-}
+		GestionPersonneRemote gpr = (GestionPersonneRemote)ref;
+
+		Personne pers1 =new Personne();
+		pers1.setNcin(11);
+		pers1.setNom("tarek");
+		gpr.ajouterPersonne(pers1);
+		
+	}}

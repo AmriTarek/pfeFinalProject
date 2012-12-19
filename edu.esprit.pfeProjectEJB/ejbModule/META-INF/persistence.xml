@@ -3,6 +3,11 @@
 	<persistence-unit name="edu.esprit.pfeProjectEJB">
 	<jta-data-source>java:/DS</jta-data-source>
 	<class>edu.esprit.pfeProjectEJB.persistence.Article</class>
+	<class>edu.esprit.pfeProjectEJB.persistence.Personne</class>
+	<class>edu.esprit.pfeProjectEJB.persistence.Role</class>
+	<class>edu.esprit.pfeProjectEJB.persistence.User</class>
+	<class>edu.esprit.pfeProjectEJB.persistence.Commande</class>
+	<class>edu.esprit.pfeProjectEJB.persistence.Fournisseur</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="create" />
