@@ -1,4 +1,4 @@
-package edu.esprit.pfeProjectEJB.domain.management.interfaces;
+package edu.esprit.pfeProjectEJB.DAO.interfaces;
 
 import javax.ejb.Remote;
 

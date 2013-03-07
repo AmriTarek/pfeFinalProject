@@ -1,39 +1,52 @@
 package edu.esprit.pfeProjectEJB.persistence;
 
-
-
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Fournisseur implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String nom;
 	private String adresse;
 	private String pays;
-	private String telephone;
+
+	@OneToMany(mappedBy = "fournisseur")
+	private Set<Facture> factures;
+
+	public Fournisseur(String nom, String adresse, String pays, String email) {
+		super();
+		this.nom = nom;
+		this.adresse = adresse;
+		this.pays = pays;
+
+		this.email = email;
+
+	}
+
+	public Fournisseur() {
+		super();
+	}
+
 	private String email;
-	
-	@OneToMany
-	@JoinTable(name = "FOUR_ART", joinColumns = @JoinColumn(name = "FOUR_ID"), inverseJoinColumns = @JoinColumn(name = "ART_ID"))
-	private List<Article> articles;
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -61,14 +74,6 @@ public class Fournisseur implements Serializable {
 		this.pays = pays;
 	}
 
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -77,12 +82,12 @@ public class Fournisseur implements Serializable {
 		this.email = email;
 	}
 
-	public List<Article> getArticles() {
-		return articles;
+	public Set<Facture> getFactures() {
+		return factures;
 	}
 
-	public void setArticles(List<Article> articles) {
-		this.articles = articles;
+	public void setFactures(Set<Facture> factures) {
+		this.factures = factures;
 	}
 
 }

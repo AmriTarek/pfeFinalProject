@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="edu.esprit.pfeProjectEJB">
-	<jta-data-source>java:/DS</jta-data-source>
-	<class>edu.esprit.pfeProjectEJB.persistence.Article</class>
-	<class>edu.esprit.pfeProjectEJB.persistence.Personne</class>
-	<class>edu.esprit.pfeProjectEJB.persistence.Role</class>
-	<class>edu.esprit.pfeProjectEJB.persistence.User</class>
-	<class>edu.esprit.pfeProjectEJB.persistence.Commande</class>
-	<class>edu.esprit.pfeProjectEJB.persistence.Fournisseur</class>
+		<jta-data-source>java:/DS</jta-data-source>
+		<class>edu.esprit.pfeProjectEJB.persistence.Article</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Personne</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Role</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.User</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Commande</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Fournisseur</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Facture</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.BonLivraison</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.MouvementStock</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Rapport</class>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+
+			<property name="hiberante.dialec" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+
 		</properties>
 	</persistence-unit>
 </persistence>

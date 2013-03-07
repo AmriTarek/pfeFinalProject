@@ -1,7 +1,7 @@
-package edu.esprit.pfeProjectEJB.domain.management;
+package edu.esprit.pfeProjectEJB.DAO;
 
-import edu.esprit.pfeProjectEJB.domain.management.interfaces.GestionPersonneLocal;
-import edu.esprit.pfeProjectEJB.domain.management.interfaces.GestionPersonneRemote;
+import edu.esprit.pfeProjectEJB.DAO.interfaces.GestionPersonneLocal;
+import edu.esprit.pfeProjectEJB.DAO.interfaces.GestionPersonneRemote;
 import edu.esprit.pfeProjectEJB.persistence.Personne;
 
 import javax.ejb.LocalBean;

@@ -1,4 +1,4 @@
-package edu.esprit.pfeProjectEJB.domain.management.interfaces;
+package edu.esprit.pfeProjectEJB.DAO.interfaces;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface ArticleDaoRemote {
 	public void createArticle(Article article) ;
 	public void updateArticle(Article article) ;
 	public void deleteArticle(Article article) ;
-	public Article getArticleById(int codeArt) ;
+	public Article readById(int codeArt) ;
 	public List<Article> getAllArticle() ;
 
 }

@@ -1,0 +1,33 @@
+ 
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body> 
+<h:form id="form">
+<p:growl showDetail="true" sticky="true"></p:growl>
+<p:panel header="Create Employee" toggleable="true">
+<h:panelGrid columns="3" cellpadding="4" cellspacing="4">
+
+<h:outputText value="Code" />
+<p:inputText id="code" value="#{createArticleCtrl.article.code_Art}" required="true"></p:inputText>
+<p:message for="code"></p:message>
+<h:outputText value=" Libellé" />
+<p:inputText id="Libellé" value="#{createArticleCtrl.article.libellé}" required="true"></p:inputText>
+<p:message for="Libellé"></p:message>
+<h:outputText value="Quantité" />
+<p:message id="Quantité" value="#{createArticleCtrl.article.quantité}" required="true" ></p:message>
+<p:message for="Quantité"></p:message>
+<p:commandButton value="Valider" action="#{createArticleCtrl.doCreateArticle()}" update="form"></p:commandButton>
+</h:panelGrid>
+
+
+</p:panel>
+</h:form>
+
+</body> 
+
+</f:view>
