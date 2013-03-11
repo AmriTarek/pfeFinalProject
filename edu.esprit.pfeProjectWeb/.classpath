@@ -14,16 +14,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Utilities/drivers/primefaces-3.4.2-sources.jar"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Workspace/pfeFirstProjects/ProjetPKIWeb/WebContent/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Workspace/pfeFirstProjects/ProjetPKIWeb/WebContent/WEB-INF/lib/commons-digester.jar"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Workspace/pfeFirstProjects/ProjetPKIWeb/WebContent/WEB-INF/lib/jhighlight-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Workspace/pfeFirstProjects/ProjetPKIWeb/WebContent/WEB-INF/lib/jsf-facelets-1.1.11.jar"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Workspace/pfeFirstProjects/ProjetPKIWeb/WebContent/WEB-INF/lib/richfaces-api-3.3.2.SR1.jar"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Workspace/pfeFirstProjects/ProjetPKIWeb/WebContent/WEB-INF/lib/richfaces-impl-3.3.2.SR1.jar"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Workspace/pfeFirstProjects/ProjetPKIWeb/WebContent/WEB-INF/lib/richfaces-ui-3.3.2.SR1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Tarek/Downloads/jfreechart-1.0.14/jfreechart-1.0.14/jfreechart-1.0.14-demo.jar"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/edu.esprit.pfeProjectEJB"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Utilities/prime/primefaces-3.3.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/edu.esprit.pfeProjectEJB"/>
 	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Utilities/prime/PrimeFacesproject/WebContent/WEB-INF/lib/jboss-client.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -1,3 +1,4 @@
+  
  
 <f:view xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -9,19 +10,19 @@
 <body> 
 <h:form id="form">
 <p:growl showDetail="true" sticky="true"></p:growl>
-<p:panel header="Create Employee" toggleable="true">
+<p:panel header="Ajouter Article" toggleable="true">
 <h:panelGrid columns="3" cellpadding="4" cellspacing="4">
 
 <h:outputText value="Code" />
 <p:inputText id="code" value="#{createArticleCtrl.article.code_Art}" required="true"></p:inputText>
 <p:message for="code"></p:message>
-<h:outputText value=" Libellé" />
-<p:inputText id="Libellé" value="#{createArticleCtrl.article.libellé}" required="true"></p:inputText>
-<p:message for="Libellé"></p:message>
-<h:outputText value="Quantité" />
-<p:message id="Quantité" value="#{createArticleCtrl.article.quantité}" required="true" ></p:message>
-<p:message for="Quantité"></p:message>
-<p:commandButton value="Valider" action="#{createArticleCtrl.doCreateArticle()}" update="form"></p:commandButton>
+<h:outputText value=" Nom" />
+<p:inputText id="Nom" value="#{createArticleCtrl.article.nom_art}" required="true"></p:inputText>
+<p:message for="Nom"></p:message>
+<h:outputText value="Prix" />
+<p:inputText id="Prix" value="#{createArticleCtrl.article.prix_HTVA}" required="true" ></p:inputText>
+<p:message for="Prix"></p:message>
+<p:commandButton value="Valider" action="#{createArticleCtrl.doAddArticle()}" update="form"></p:commandButton>
 </h:panelGrid>
 
 
