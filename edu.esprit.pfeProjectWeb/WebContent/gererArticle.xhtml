@@ -1,0 +1,129 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">  
+      
+    <h:head>
+        <title>Gerer Article</title>
+        <link rel="stylesheet" href="css/style.css "/>
+    </h:head>
+    <h:body>
+    <h:form id="entete"> 
+        <ui:include src="entete.xhtml" />	
+        <ui:include src="menuBar.xhtml"/>
+        
+      </h:form>
+      
+         <h:form id="AjoutP">
+            <p:commandButton value="Ajouter un article" icon="ui-icon-adds" actionListener="#{createArticleCtrl.ajoutEvent(actionEvent)}" update=":edit:editP" oncomplete="articleAjout.show()"/>
+        </h:form>
+        
+        <h:form id="a">
+            <p:growl id="growl" showDetail="true" sticky="false"  />
+            <p:dataTable var="article" value="#{createArticleCtrl.listArticle}" id="AjoutTab" widgetVar="ArticleTable"
+                         emptyMessage="Article non trouvé" paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                         rowsPerPageTemplate="5,10,15" style="width:500px;font-size:13px;margin-left: 150px">
+ 
+                <f:facet name="header"> 
+                    <p:outputPanel> 
+                        <h:outputText value="Recherche:" /> 
+                        <p:inputText id="globalFilter" onkeyup="ArticleTable.filter()" style="width:80px" /> 
+                    </p:outputPanel> 
+                </f:facet> 
+                <p:column id="articleId" headerText="ID" filterBy="#{article.code_Art}" filterMatchMode="exact" footerText=" ID exacte"> 
+                    <h:outputText value="#{article.code_Art}" /> 
+                </p:column>
+ 
+                <p:column id="articleRef" headerText="Ref" filterBy="#{article.ref_Art}" filterMatchMode="exact" footerText=" Ref exacte"> 
+                    <h:outputText value="#{article.ref_Art}" /> 
+                </p:column> 
+                <p:column headerText="Nom" id="articleNom" filterBy="#{article.nom_art}" filterMatchMode="exact" footerText="nom exacte"> 
+                    <h:outputText value="#{article.nom_art}" /> 
+                </p:column>
+                <p:column headerText="Libelle" id="articleLibelle" filterBy="#{article.libellé}" filterMatchMode="contains" footerText="contient"> 
+                    <h:outputText value="#{article.libellé}" /> 
+                </p:column> 
+                <p:column headerText="Prix" id="articlePrix" filterBy="#{article.prix_HTVA}" filterMatchMode="contains" footerText="contient"> 
+                    <h:outputText value="#{article.prix_HTVA}" /> 
+                </p:column>
+                <p:column headerText="TVA" id="articleTVA" filterBy="#{article.TVA}" filterMatchMode="startsWith" footerText="commence par"> 
+                    <h:outputText value="#{article.TVA}" /> 
+                </p:column> 
+                <p:column headerText="Quantité" id="articleQuantite" filterBy="#{article.quantité}" filterMatchMode="contains" footerText="contient"> 
+                    <h:outputText value="#{article.quantité}" /> 
+                </p:column>
+                <p:column headerText="Quantité_min" id="articleQUantitéMin" filterBy="#{article.quantité_min}" filterMatchMode="contains" footerText="contient"> 
+                    <h:outputText value="#{article.quantité_min}" /> 
+                </p:column> 
+                <p:column style="width:4%"> 
+                    <p:commandButton id="Editer"  update=":Actualise:displaye" icon="ui-icon-arrowrefresh-1-w" oncomplete="articleEdit.show();" actionListener="#{createArticleCtrl.editEvent(article.code_Art)}" title="Editer"/>
+                </p:column>
+                <p:column style="width:4%"> 
+                    <p:commandButton id="Supprimer"  update=":a:AjoutTab, :a:growl" icon="ui-icon-trash" action="#{createArticleCtrl.doDeleteArticle(article) }"  title="Supprime"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+  <h:form id="edit">   
+ 
+            <p:dialog header="Ajout d'article" widgetVar="articleAjout" resizable="false" id="editP" modal="true">
+ 
+                <p:growl id="growl" showDetail="true" sticky="false" life="10000"/>
+                <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;"> 
+ 
+                    <f:facet name="header">  
+                        <h:outputLabel value="Veuillez procéder à l'ajout"/>
+                    </f:facet> 
+ 
+                    <h:outputLabel for="nom" title="Nom" value="Nom:" style="color: crimson;" />
+                    <h:inputText value="#{createArticleCtrl.article.nom_art}"  id="nom" required="true"/> 
+                    <h:outputLabel for="libelle"  value="Libellé:" style="color: crimson;"/>
+                    <h:inputText value="#{createArticleCtrl.article.libellé}"  id="libelle" required="true"/>
+                    <h:outputLabel for="prix" title="Nom" value="PrixHTVA" style="color: crimson;"/>
+                    <h:outputLabel for="tva" title="Nom" value="TVA" style="color: crimson;" />
+                    <h:inputText value="#{createArticleCtrl.article.prix_HTVA}"   id="prix" required="true"/>
+                    <h:inputText value="#{createArticleCtrl.article.TVA}"  id="tva" required="true"/>
+                    <h:outputLabel for="quantité" title="Nom" value="Quantité" style="color: crimson;"/>
+                    <h:outputLabel for="quantité_min" title="Nom" value="Quantité_Min" style="color: crimson;"/>
+                    <h:inputText value="#{createArticleCtrl.article.quantité}"   id="quantité" required="true"/>
+                    <h:inputText value="#{createArticleCtrl.article.quantité_min}"  id="quantité_min" required="true"/>
+ 
+                </h:panelGrid> 
+                <p:separator/>
+                <p:commandButton value="Enregistrer" update=":a:AjoutTab, growl" actionListener="#{createArticleCtrl.doAddArticle(actionEvent) }" oncomplete="articleAjout.hide()"  />
+            </p:dialog>
+ 
+        </h:form>
+        
+        <h:form id="Actualise">   
+            <p:dialog header="Modification" widgetVar="articleEdit" resizable="false" id="editArt" modal="true"> 
+                <p:growl id="growl" showDetail="true" sticky="false" />
+                <h:panelGrid id="displaye" columns="2" cellpadding="4" style="margin:0 auto;"> 
+ 
+                    <f:facet name="header">  
+                        <h:outputLabel value="bonjour"/>
+                    </f:facet> 
+ 
+                   <h:outputLabel for="nom" title="Nom" value="Nom:" style="color: crimson;" />
+                    <h:inputText value="#{createArticleCtrl.article.nom_art}"  id="nom" /> 
+                    <h:outputLabel for="libelle"  value="Libellé:" style="color: crimson;"/>
+                    <h:inputText value="#{createArticleCtrl.article.libellé}"  id="libelle" />
+                    <h:outputLabel for="prix" title="Nom" value="PrixHTVA" style="color: crimson;"/>
+                    <h:outputLabel for="tva" title="Nom" value="TVA" style="color: crimson;" />
+                    <h:inputText value="#{createArticleCtrl.article.prix_HTVA}"   id="prix" />
+                    <h:inputText value="#{createArticleCtrl.article.TVA}"  id="tva" />
+                    <h:outputLabel for="quantité" title="Nom" value="Quantité" style="color: crimson;"/>
+                    <h:outputLabel for="quantité_min" title="Nom" value="Quantité_Min" style="color: crimson;"/>
+                    <h:inputText value="#{createArticleCtrl.article.quantité}"   id="quantité"/>
+                    <h:inputText value="#{createArticleCtrl.article.quantité_min}"  id="quantité_min" />
+ 
+                </h:panelGrid> 
+                <p:separator/>
+                <p:commandButton value="Enregistrer" update=":a:AjoutTab, growl" actionListener="#{createArticleCtrl.doUpdateArticle(actionEvent) }" oncomplete="articleEdit.hide()"/>
+            </p:dialog>
+ 
+        </h:form>
+        
+        
+    </h:body>
+</html>

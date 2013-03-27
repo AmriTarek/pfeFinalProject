@@ -1,10 +1,13 @@
 package ctrl;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import edu.esprit.pfeProjectEJB.DAO.interfaces.ArticleDaoRemote;
 import edu.esprit.pfeProjectEJB.persistence.Article;
@@ -13,10 +16,25 @@ import edu.esprit.pfeProjectEJB.persistence.Article;
 @SessionScoped
 public class CreateArticleCtrl {
 	private Article article = new Article();
+	
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+	private List<Article> listArticle ;
+	
 	@EJB
 	ArticleDaoRemote remote;
+	
+	
+	 public void ajoutEvent(ActionEvent actionEvent) {
+	        article = new Article();
+	 }
 
-	public String doAddArticle() {
+	public String doAddArticle(ActionEvent actionEvent) {
 		FacesContext context=FacesContext.getCurrentInstance();
 try { 
 		remote.createArticle(article);
@@ -31,12 +49,44 @@ try {
 		return "";
 	}
 
-	public Article getArticle() {
-		return article;
+	
+	public void doDeleteArticle(Article article) {
+		
+		FacesContext context = FacesContext.getCurrentInstance() ;
+		remote.deleteArticle(article) ;
+		FacesMessage message=new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Suppression réuissite");
+		context.addMessage(null, message);
+		
+		
+	}
+	
+	
+	public void doUpdateArticle(ActionEvent actionEvent) {
+		
+		FacesContext context = FacesContext.getCurrentInstance() ;
+
+		remote.updateArticle(article) ;
+		FacesMessage message=new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Mise à jour réuissite");
+		context.addMessage(null, message);
+		
+	}
+	
+	
+	public List<Article> getListArticle() {
+		listArticle = remote.getAllArticle() ;
+		return listArticle;
 	}
 
-	public void setArticle(Article article) {
-		this.article = article;
+	public void setListArticle(List<Article> listArticle) {
+		this.listArticle = listArticle;
 	}
+
+	public void editEvent(int codeArt) {
+        System.out.print(codeArt);
+        
+        article = remote.readById(codeArt); } 
+ 
+	
+	
 
 }

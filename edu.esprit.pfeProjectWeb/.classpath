@@ -13,8 +13,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Utilities/drivers/primefaces-3.4.2-sources.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/edu.esprit.pfeProjectEJB"/>
-	<classpathentry kind="lib" path="C:/PFE/JEE6ToolsEsprit/Utilities/prime/PrimeFacesproject/WebContent/WEB-INF/lib/jboss-client.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/PFE/JEE6ToolsEsprit/Utilities/prime/PrimeFacesproject/WebContent/WEB-INF/lib/jboss-client.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/PFE/JEE6ToolsEsprit/Utilities/prime/PrimeFacesproject/WebContent/WEB-INF/lib/primefaces-3.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Tarek/Downloads/afterdark-1.0.9.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
