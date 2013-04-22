@@ -54,5 +54,7 @@ public class GestionArticle implements GestionArticleRemote, GestionArticleLocal
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 
 }

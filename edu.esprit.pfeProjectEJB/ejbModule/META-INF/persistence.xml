@@ -9,15 +9,19 @@
 		<class>edu.esprit.pfeProjectEJB.persistence.Role</class>
 		<class>edu.esprit.pfeProjectEJB.persistence.User</class>
 		<class>edu.esprit.pfeProjectEJB.persistence.Commande</class>
-		<class>edu.esprit.pfeProjectEJB.persistence.Fournisseur</class>
 		<class>edu.esprit.pfeProjectEJB.persistence.Facture</class>
 		<class>edu.esprit.pfeProjectEJB.persistence.BonLivraison</class>
-		<class>edu.esprit.pfeProjectEJB.persistence.MouvementStock</class>
 		<class>edu.esprit.pfeProjectEJB.persistence.Rapport</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Mouvement</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Entree</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Sortie</class>
+		<class>edu.esprit.pfeProjectEJB.persistence.Fournisseur</class>
 		<properties>
 
-			<property name="hiberante.dialec" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+				<property name="hiberante.dialec" value="org.hibernate.dialect.MySQLDialect"/>
+						<property name="hibernate.hbm2ddl.auto" value="create" />
+						<property name="hibernate.hbm2ddl.auto" value="update" />
+			
 
 		</properties>
 	</persistence-unit>

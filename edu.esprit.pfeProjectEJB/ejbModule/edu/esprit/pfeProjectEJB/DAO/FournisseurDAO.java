@@ -10,6 +10,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  * Session Bean implementation class FournisseurDAO
@@ -26,6 +27,7 @@ public class FournisseurDAO implements FournisseurDAORemote, FournisseurDAOLocal
 
 	@Override
 	public void createFournisseur(Fournisseur fournisseur) {
+		em.find(Fournisseur.class, fournisseur.getId()) ;
     em.persist(fournisseur)		;
 	}
 
@@ -49,7 +51,8 @@ public class FournisseurDAO implements FournisseurDAORemote, FournisseurDAOLocal
 
 	@Override
 	public List<Fournisseur> getAllFournisseurs() {
-		return em.createQuery("select f from fournisseurs f").getResultList();
+		Query query = em.createQuery("select f from Fournisseur f");
+		return query.getResultList();
 	}
 
 	

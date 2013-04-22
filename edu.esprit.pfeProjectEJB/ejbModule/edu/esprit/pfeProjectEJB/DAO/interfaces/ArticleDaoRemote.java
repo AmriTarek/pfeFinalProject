@@ -14,5 +14,5 @@ public interface ArticleDaoRemote {
 	public void deleteArticle(Article article) ;
 	public Article readById(int codeArt) ;
 	public List<Article> getAllArticle() ;
-
+	public void entregisterEntree(int id_art, int quant); 
 }

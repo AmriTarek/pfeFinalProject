@@ -2,6 +2,8 @@ package edu.esprit.pfeProjectEJB.persistence;
 
 import java.io.Serializable;
 import java.lang.Long;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -15,7 +17,9 @@ public class BonLivraison implements Serializable {
 	
 	private int id;
 	private int num_bonlivr;
+	
 	private int quantité;
+	
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -23,7 +27,16 @@ public class BonLivraison implements Serializable {
 	public BonLivraison() {
 		super();
 	}   
+	
+	public BonLivraison(int num_bonlivr, int quantité) {
+		super();
+		this.num_bonlivr = num_bonlivr;
+		this.quantité = quantité;
+	}
+
 	@Id    
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public int getId() {
 		return this.id;
 	}
@@ -45,5 +58,6 @@ public class BonLivraison implements Serializable {
 	public void setQuantité(int quantité) {
 		this.quantité = quantité;
 	}
+	
    
 }

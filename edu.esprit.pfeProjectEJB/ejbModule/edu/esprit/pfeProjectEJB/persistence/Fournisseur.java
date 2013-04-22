@@ -42,7 +42,7 @@ public class Fournisseur implements Serializable {
 
 	private String email;
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

@@ -10,6 +10,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  * Session Bean implementation class BonLivraisonDAO
@@ -28,33 +29,34 @@ public class BonLivraisonDAO implements BonLivraisonDAORemote, BonLivraisonDAOLo
         // TODO Auto-generated constructor stub
     }
 
-	@Override
+	
 	public void createBonLivraison(BonLivraison bonlivraison) {
 		em.persist(bonlivraison);
 		
 		
 	}
 
-	@Override
+	
 	public void updateBonLivraison(BonLivraison bonlivraison) {
 		em.merge(bonlivraison);
 		
 	}
 
-	@Override
+	
 	public void deleteBonLivraison(BonLivraison bonlivraison) {
 em.remove(bonlivraison)		;
 	}
 
-	@Override
+	
 	public BonLivraison readById(int id) {
 		return em.find(BonLivraison.class, id);
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
+	
 	public List<BonLivraison> getAllBonLivraison() {
-		return em.createQuery("select b from bonlivraison b").getResultList();
-
+		Query query = em.createQuery("select b from BonLivraison b") ;
+		return query.getResultList() ;
 		
 		
 	}

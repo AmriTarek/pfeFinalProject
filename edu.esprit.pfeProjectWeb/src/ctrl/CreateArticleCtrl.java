@@ -15,7 +15,12 @@ import edu.esprit.pfeProjectEJB.persistence.Article;
 @ManagedBean
 @SessionScoped
 public class CreateArticleCtrl {
+	
+	
 	private Article article = new Article();
+	int code_Art ;
+	int quantité ;
+	
 	
 	public Article getArticle() {
 		return article;
@@ -24,6 +29,8 @@ public class CreateArticleCtrl {
 	public void setArticle(Article article) {
 		this.article = article;
 	}
+	
+	
 	private List<Article> listArticle ;
 	
 	@EJB
@@ -65,7 +72,10 @@ try {
 		
 		FacesContext context = FacesContext.getCurrentInstance() ;
 
+		remote.entregisterEntree(article.getCode_Art(), article.getQuantité()) ;
 		remote.updateArticle(article) ;
+		
+	
 		FacesMessage message=new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Mise à jour réuissite");
 		context.addMessage(null, message);
 		

@@ -1,12 +1,23 @@
 package edu.esprit.pfeProjectEJB.persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Entity implementation class for Entity: Article
@@ -15,25 +26,41 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Article implements Serializable {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int code_Art;
 	private String ref_Art;
 	private String nom_art;
-	private String libellé;
+	private String libelle;
 	private int prix_HTVA;
 	private int TVA;
 	private int quantité;
-	private int quantité_min;
+	public Collection<Mouvement> getLismouvement() {
+		return lismouvement;
+	}
 
+
+	public void setLismouvement(Collection<Mouvement> lismouvement) {
+		this.lismouvement = lismouvement;
+	}
+	private int quantité_min;
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL, mappedBy="article")
+	private Collection<Mouvement> lismouvement ;
+
+	@ManyToOne
 	private User user;
+	
+	@ManyToOne
 	private Commande commande;
-	private static final long serialVersionUID = 1L;
+	
+	
+	private static final long serialVersionUID = 1L ;
 
 	public Article() {
 		super();
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	public int getCode_Art() {
 		return this.code_Art;
 	}
@@ -47,12 +74,14 @@ public class Article implements Serializable {
 		super();
 		this.ref_Art = ref_Art;
 		this.nom_art = nom_art;
-		this.libellé = libellé;
+		this.libelle = libellé;
 		this.prix_HTVA = prix_HTVA;
 		TVA = tVA;
 		this.quantité = quantité;
 		this.quantité_min = quantité_min;
 	}
+
+	
 
 	public String getRef_Art() {
 		return ref_Art;
@@ -71,11 +100,11 @@ public class Article implements Serializable {
 	}
 
 	public String getLibellé() {
-		return libellé;
+		return libelle;
 	}
 
 	public void setLibellé(String libellé) {
-		this.libellé = libellé;
+		this.libelle = libellé;
 	}
 
 	public int getPrix_HTVA() {
@@ -97,7 +126,7 @@ public class Article implements Serializable {
 	public Article(String nom_art, String libellé) {
 		super();
 		this.nom_art = nom_art;
-		this.libellé = libellé;
+		this.libelle = libellé;
 	}
 
 	public int getQuantité() {
@@ -116,7 +145,6 @@ public class Article implements Serializable {
 		this.quantité_min = quantité_min;
 	}
 
-	@ManyToOne
 	public Commande getCommande() {
 		return commande;
 	}
@@ -125,7 +153,6 @@ public class Article implements Serializable {
 		this.commande = commande;
 	}
 
-	@ManyToOne
 	public User getUser() {
 		return user;
 	}
@@ -133,5 +160,11 @@ public class Article implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+
+	
+   
+
+
 
 }

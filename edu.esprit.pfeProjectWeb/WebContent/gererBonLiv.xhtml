@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head>
+ <title>Gerer Bon Livraison</title>
+        <link rel="stylesheet" href="css/style.css "/>
+</h:head> 
+<body> 
+ <h:form id="entete"> 
+        <ui:include src="entete.xhtml" />	
+        <ui:include src="menuBar.xhtml"/>
+        
+      </h:form>
+      
+ <h:form id="AjoutB">
+            <p:commandButton value="Ajouter un Bon de Livraison" icon="ui-icon-adds" actionListener="#{gererBonLivrCtrl.ajoutEvent(actionEvent)}" update=":edit:editB" oncomplete="bonLivAjout.show()"/>
+        </h:form>
+        
+         <h:form id="b">
+            <p:growl id="growl" showDetail="true" sticky="false"  />
+            <p:dataTable var="bonlivraison" value="#{gererBonLivrCtrl.listbonlivr}" id="AjoutTab" widgetVar="BonLivTable"
+                         emptyMessage="Bon non trouvé" paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                         rowsPerPageTemplate="5,10,15" style="width:500px;font-size:13px;margin-left: 150px">
+                  <f:facet name="header"> 
+                          <p:outputPanel> 
+                             <h:outputText value="Recherche:" /> 
+                             <p:inputText id="globalFilter" onkeyup="BonLivTable.filter()" style="width:80px" /> 
+                          </p:outputPanel> 
+                  </f:facet> 
+                   <p:column id="bonLivId" headerText="ID" filterBy="#{bonlivraison.id}" filterMatchMode="exact" footerText=" ID exacte"> 
+                    <h:outputText value="#{bonlivraison.id}" /> 
+                </p:column>
+                
+                    <p:column id="bonLivNum" headerText="Ref" filterBy="#{bonlivraison.num_bonlivr}" filterMatchMode="exact" footerText=" Num exacte"> 
+                       <h:outputText value="#{bonlivraison.num_bonlivr}" /> 
+                    </p:column>
+
+                   <!--  <p:column id="articleRef" headerText="Ref" filterBy="#{bonlivraison.articles}" filterMatchMode="exact" footerText=" Ref exacte"> 
+                       <h:outputText value="#{bonlivraison.articles}" /> 
+                    </p:column> -->
+                    
+                     <p:column style="width:4%"> 
+                        <p:commandButton id="Editer"  update=":Actualise:displaye" icon="ui-icon-arrowrefresh-1-w" oncomplete="bonLivEdit.show();" actionListener="#{gererBonLivrCtrl.editEvent(bonlivraison.id)}" title="Editer"/>
+                     </p:column>
+                     <p:column style="width:4%"> 
+                         <p:commandButton id="Supprimer"  update=":b:AjoutTab, :b:growl" icon="ui-icon-trash" action="#{gererBonLivrCtrl.doDeleteBonLivr(bonlivraison)}"  title="Supprime"/>
+                      </p:column>
+            </p:dataTable>
+        </h:form>
+        
+        <h:form id="edit">   
+ 
+            <p:dialog header="Ajout de bon" widgetVar="bonLivAjout" resizable="false" id="editB" modal="true">
+ 
+                <p:growl id="growl" showDetail="true" sticky="false" life="10000"/>
+                <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;"> 
+ 
+                    <f:facet name="header">  
+                        <h:outputLabel value="Veuillez procéder à l'ajout"/>
+                    </f:facet> 
+                    
+                    
+                    <h:outputLabel for="bonLivNum" title="Num" value="Numéro:" style="color: crimson;" />
+                    <h:inputText value="#{gererBonLivrCtrl.bonlivraison.num_bonlivr}"  id="bonLivNum" required="true"/> 
+                    
+                     </h:panelGrid> 
+                <p:separator/>
+                <p:commandButton value="Enregistrer" update=":b:AjoutTab, growl" actionListener="#{gererBonLivrCtrl.doAddBonLivr(actionEvent) }" oncomplete="bonLivAjout.hide()"  />
+            </p:dialog>
+ 
+        </h:form>
+        
+        
+         <h:form id="Actualise">   
+            <p:dialog header="Modification" widgetVar="bonLivEdit" resizable="false" id="editBon" modal="true"> 
+                <p:growl id="growl" showDetail="true" sticky="false" />
+                <h:panelGrid id="displaye" columns="2" cellpadding="4" style="margin:0 auto;"> 
+ 
+                    <f:facet name="header">  
+                        <h:outputLabel value="bonjour"/>
+                    </f:facet> 
+                    
+                     <h:outputLabel for="num" title="num" value="Numéro:" style="color: crimson;" />
+                    <h:inputText value="#{gererBonLivrCtrl.bonlivraison.num_bonlivr}"  id="num" /> 
+                    
+                    
+                     </h:panelGrid> 
+                <p:separator/>
+                <p:commandButton value="Enregistrer" update=":b:AjoutTab, growl" actionListener="#{gererBonLivrCtrl.doUpdateBonLivr(actionEvent)}" oncomplete="bonLivEdit.hide()"/>
+            </p:dialog>
+ 
+        </h:form>
+
+</body> 
+</html>
